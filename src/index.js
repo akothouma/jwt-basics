@@ -1,17 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+const  express = require("express")
+const mainRouter= require("./routes/main.js");
+const app=express();
+const port=process.env.PORT||3000;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+app.use("/api/v1/",mainRouter);
+app.use(express.json());
+app.listen(port,()=>{
+    console.log(`Server is running on port number ${port}`)
+})
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
